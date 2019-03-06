@@ -1,0 +1,132 @@
+html, body {
+    padding: 0px;
+    font-family: 'Rubik', sans-serif;
+}
+
+#header {
+    margin-left: 15px;
+}
+
+#navbar {
+    background-color: #e2e2e2;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+}
+
+#nav li {
+    margin: 0 15px;
+}
+
+a {
+    color: grey;
+}
+
+#header {
+    font-size: 28px;
+    color: black;
+}
+
+#container {
+    margin-top: 25px;
+    margin-left: 25px;
+    display: grid;
+    grid-template-columns: 450px auto;
+}
+
+#inputs {
+    max-width: 405px;
+    margin: 0;
+    display: inline;
+}
+
+#results {
+    max-width: 405px;
+    margin: 0;
+    display: inline;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none; 
+}
+
+.form-control {
+    width: 200px;
+    margin: 5px 0;
+}
+
+label {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+button {
+    margin-bottom: 20px;
+}
+
+ul {
+    padding: 0;
+    max-width: 402px;
+}
+
+#curve_chart {
+    height: 500px;
+    grid-column: 2 / 3
+}
+
+
+@media (min-width: 450px) {
+    #d1 {
+        display: inline;
+    }
+    
+    #s1 {
+        display: inline;
+    }
+
+    #d2 {
+        display: inline;
+    }
+    
+    #s2 {
+        display: inline;
+    }
+}
+
+@media (max-width: 495px) {
+    #nav {
+        display: block;
+    }
+
+    #nav li {
+        margin: 5px; 
+    }
+}
+
+@media (max-width: 1000px) {
+    #header {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    #container {
+        display: block;
+        margin: 0; 
+    }
+
+    #body {
+        margin: 15px;
+    }
+    
+    #curve_chart {
+        height: 350px;
+    }
+}
