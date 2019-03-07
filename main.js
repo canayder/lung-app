@@ -3,7 +3,21 @@ var date2 = document.getElementById("d2");
 var size1 = document.getElementById("s1");
 var size2 = document.getElementById("s2");
 var result = document.getElementById("results");
-var button = document.querySelector("#calculate")
+var button = document.querySelector("#calculatescan");
+var graph = document.querySelector("#curve_chart");
+
+$("#vdt").click(function(){
+  $("#vdt").addClass("active");
+  $("#vdtInput").removeClass("noDisplay");
+  $("#scan").removeClass("active");
+  $("#scanInputs").addClass("noDisplay");
+});
+$("#scan").click(function(){
+  $("#vdt").removeClass("active");
+  $("#vdtInput").addClass("noDisplay");
+  $("#scan").addClass("active");
+  $("#scanInputs").removeClass("noDisplay");
+});
 
 function diffDays() {
     var input1 = date1.value;
@@ -95,31 +109,31 @@ function stage() {
 button.addEventListener("click", function(){
     var dD = diffDays();
     var dS = diffSize();
+    var s = stage();
     if (dD.diffD < 0) {
         alert("Please Check the Dates.")
     } else {
-    console.log("========================")
-    console.log("Time Diff: " + dD.diffD);
+    // console.log("========================")
+    // console.log("Time Diff: " + dD.diffD);
     console.log("First Date: " + dD.dayOne);
-    console.log("Second Date: " + dD.dayTwo);
-    console.log("Size Diff: " + dS.diffS);
-    console.log("VDT: " + VDT());
-    console.log("Rate: " + rate());
-    var s = stage();
-    console.log("Stage: " + s.stageScan2);
-    console.log("Days to Next Stage: " + s.t);
+    // console.log("Second Date: " + dD.dayTwo);
+    // console.log("Size Diff: " + dS.diffS);
+    // console.log("VDT: " + VDT());
+    // console.log("Rate: " + rate());
+    // console.log("Stage: " + s.stageScan2);
+    // console.log("Days to Next Stage: " + s.t);
     result.innerHTML = 
-    `<hr>
-    <h4>Results:</h4>
+   ` <hr>
+     <h4>Results:</h4>
       <ul>
         <li class="list-group-item">Current stage is ${s.stageScan2}</li>
         <li class="list-group-item">Days to next stage: ${s.t}</li>
         <li class="list-group-item">Volume Doubling Time: ${VDT()} days</li>
         <li class="list-group-item">Lesion formed ${startDate()} days before the first scan.</li>
-    </ul>`
-    }
+      </ul>`
+    
 
-google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       var dD = diffDays();
       var dS = diffSize();
@@ -139,6 +153,7 @@ google.charts.load('current', {'packages':['corechart']});
           vAxis: {
             title: 'Tumor Size in cm',
             gridlines: {count:25},
+            direction: -1,
             viewWindowMode:'explicit',
             viewWindow: {
                 max: dS.sizeTwo + 1,
@@ -161,6 +176,19 @@ google.charts.load('current', {'packages':['corechart']});
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
         chart.draw(data, options);
-      }
-});
+      };
 
+
+    };
+  })
+
+$("#calculatevdt").click(() => {
+  var vdtValue = document.querySelector("#vdtValue");
+  var inputVdt = Number(vdtValue.value);
+  result.innerHTML = 
+  ` <hr>
+   <h4>Results:</h4>
+    <p>Volume Doubling Time is ${inputVdt}`
+
+  graph.innerHTML = `<p>Graph will be here</p>`
+});

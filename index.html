@@ -6,42 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lung Cancer Stage Calculator</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:200,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
     
 <div id="navbar">
-    <a id="header" href="#"><i class="fas fa-laptop-medical"></i> Lung Cancer Stage Calculator</a>
+    <a id="header" href="#"><i class="fas fa-laptop-medical"></i> T - Stage Calculator<sup>Beta</sup></a>
     <ul id="nav">
-        <li><a href="#">About</a></li>
-        <li><a href="#">Help</a></li>
+        <li><a target="_blank" href="https://github.com/canayder/lung-app">About</a></li>
+        <!-- <li><a href="#">Help</a></li> -->
     </ul>
 </div>
 
 
 <div id="container">
     <div id="body">
-        <div id="inputs">
-            <label for="">First Stage: </label>
+        <!-- <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="scan" href="#">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="vdt" href="#">VDT</a>
+            </li>
+        </ul> -->
+        <div id="scanInputs" class="">
+            <label for="">First Imaging: </label>
             <br>
             <input class="form-control" id="d1" type="date">
             <input class="form-control" id="s1" type="number" placeholder="Tumor size in cm">
             <br>
-            <label for="">Second Stage: </label>
+            <label for="">Second Imaging: </label>
             <br>    
             <input class="form-control" id="d2" type="date">
             <input class="form-control" id="s2" type="number" placeholder="Tumor size in cm">
             <br>
-            <button id="calculate" type="submit" class="btn btn-primary">Calculate</button>
+            <button id="calculatescan" type="submit" class="btn btn-primary">Calculate</button>
+        </div>
+        <div id="vdtInput" class="noDisplay">
+            <label for="">Volume Doubling Time in Days: </label>
+            <br>
+            <input class="form-control" id="vdtValue" type="number" placeholder="VDT in Days">
+            <br>
+            <button id="calculatevdt" type="submit" class="btn btn-primary">Calculate</button>
         </div>
         <br>
         <div id="results"></div>
     </div>
+
+        <div id="curve_chart"></div>
+        
     
-    <div id="curve_chart"></div>
     
 </div>
 

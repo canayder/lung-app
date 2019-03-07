@@ -7,6 +7,10 @@ html, body {
     margin-left: 15px;
 }
 
+#header i {
+    margin-right: 15px;
+}
+
 #navbar {
     background-color: #e2e2e2;
     padding: 10px;
@@ -30,6 +34,18 @@ a {
     color: grey;
 }
 
+a:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+sup {
+    color: rgb(160, 160, 160);
+    vertical-align: super;
+    font-size: 16px;
+    font-weight: 200;
+}
+
 #header {
     font-size: 28px;
     color: black;
@@ -42,10 +58,8 @@ a {
     grid-template-columns: 450px auto;
 }
 
-#inputs {
-    max-width: 405px;
-    margin: 0;
-    display: inline;
+.noDisplay {
+    display: none;
 }
 
 #results {
@@ -69,7 +83,7 @@ label {
 }
 
 button {
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 
 ul {
@@ -78,36 +92,14 @@ ul {
 }
 
 #curve_chart {
+    margin-top: 50px;
     height: 500px;
     grid-column: 2 / 3
 }
 
-
 @media (min-width: 450px) {
-    #d1 {
+    .form-control {
         display: inline;
-    }
-    
-    #s1 {
-        display: inline;
-    }
-
-    #d2 {
-        display: inline;
-    }
-    
-    #s2 {
-        display: inline;
-    }
-}
-
-@media (max-width: 495px) {
-    #nav {
-        display: block;
-    }
-
-    #nav li {
-        margin: 5px; 
     }
 }
 
@@ -115,6 +107,18 @@ ul {
     #header {
         margin: 0;
         font-size: 22px;
+    }
+
+    #header i {
+        margin-right: 0;
+    }
+
+    #nav li {
+        margin: 5px;
+    }
+
+    sup {
+        font-size: 12px;
     }
 
     #container {
@@ -127,26 +131,7 @@ ul {
     }
     
     #curve_chart {
+        margin-top: 0;
         height: 350px;
     }
 }
-
-body:after{
-    content: "beta";
-    position: fixed;
-    width: 80px;
-    height: 25px;
-    background: #EE8E4A;
-    top: 7px;
-    left: -20px;
-    text-align: center;
-    font-size: 13px;
-    font-family: sans-serif;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #fff;
-    line-height: 27px;
-    -ms-transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
-    transform:rotate(-45deg);
-  }
