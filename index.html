@@ -15,31 +15,29 @@
 <body>
     
 <div id="navbar">
-    <a id="header" href="#"><i class="fas fa-laptop-medical"></i> T - Stage Calculator<sup>Beta</sup></a>
+    <a id="header" href="#"><i class="fas fa-laptop-medical"></i> <span>Lung Cancer </span>T - Stage Calculator<sup>Beta</sup></a>
     <ul id="nav">
         <li><a target="_blank" href="https://github.com/canayder/lung-app">About</a></li>
-        <!-- <li><a href="#">Help</a></li> -->
     </ul>
 </div>
 
-
 <div id="container">
     <div id="body">
-        <!-- <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" id="scan" href="#">Images</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="vdt" href="#">VDT</a>
             </li>
-        </ul> -->
+        </ul>
         <div id="scanInputs" class="">
-            <label for="">First Imaging: </label>
+            <label for="">First Imaging:</label>
             <br>
             <input class="form-control" id="d1" type="date">
             <input class="form-control" id="s1" type="number" placeholder="Tumor size in cm">
             <br>
-            <label for="">Second Imaging: </label>
+            <label for="">Second Imaging:</label>
             <br>    
             <input class="form-control" id="d2" type="date">
             <input class="form-control" id="s2" type="number" placeholder="Tumor size in cm">
@@ -57,18 +55,14 @@
         <div id="results"></div>
     </div>
 
-        <div id="curve_chart"></div>
-        
-    
-    
+    <div id="graphs"></div>
+   
 </div>
 
-
-<script src="main.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="main.js"></script>
 
 </body>
 </html>
