@@ -122,6 +122,28 @@ function stage() {
       };
 }
 
+
+function survivalChance(diam) {
+  var survivalChance;
+
+  if (diam < 1.1) {
+    return survivalChance = 0.90
+  } else if (diam < 2.1) {
+    return survivalChance = 0.85
+  } else if (diam < 3.1) {
+    return survivalChance = 0.80
+  } else if (diam < 4.1) {
+    return survivalChance = 0.73
+  } else if (diam < 5.1) {
+    return survivalChance = 0.66
+  } else if (diam < 6.1) {
+    return survivalChance = 0.63 
+  } else {
+    return survivalChance = 0.57
+  }
+}
+
+
 button.addEventListener("click", function(){
     var dD = diffDays();
     var dS = diffSize();
@@ -138,6 +160,11 @@ button.addEventListener("click", function(){
     // console.log("Rate: " + rate());
     // console.log("Stage: " + s.stageScan2);
     // console.log("Days to Next Stage: " + s.t);
+    console.log(moment(d1).format("D MM YY"));
+
+    function precise(x) {
+      return Number.parseFloat(x).toPrecision(1);
+    }
     result.innerHTML = 
     `
     <hr>
@@ -145,6 +172,7 @@ button.addEventListener("click", function(){
       <ul>
         <li class="list-group-item">Current stage is ${s.stageScan2}</li>
         <li class="list-group-item">Days to next stage: ${s.t}</li>
+        <li class="list-group-item">Loss in Survival: ${precise(survivalChance(dS.sizeOne) - survivalChance(dS.sizeTwo))*100} %</li>
         <li class="list-group-item">Volume Doubling Time: ${VDT()} days</li>
         <li class="list-group-item">Lesion formed ${startDate()} days before the first scan.</li>
       </ul>
@@ -161,15 +189,20 @@ button.addEventListener("click", function(){
       </li>
     </ul>
 
-    <div id="curve_chart" class="chart"></div>
-    <div id="curve_chart_sur" class="chart noDisplay"></div>
+    <div id="curve_chart" class="chart">
+      <canvas id="myChart" class=""></canvas>
+    </div>
+    
+    <div id="curve_chart_sur" class="chart noDisplay">
+      <canvas id="myChart2" class=""></canvas>
+    </div>
     
     `
     $('html, body').animate({
         scrollTop: $("hr").offset().top
     }, 1000);
 
-    google.charts.load('current', {'packages':['corechart']});
+     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
@@ -215,6 +248,31 @@ button.addEventListener("click", function(){
       };
     };
 
+    // var dD = diffDays();
+    // var dS = diffSize();
+
+    // var ctx = document.getElementById('myChart').getContext('2d');
+    // var scatterChart = new Chart(ctx, {
+    //   type: 'scatter',
+    //   data: {
+    //       datasets: [{
+    //           label: 'Scatter Dataset',
+    //           data: [{
+    //               x: new Date(d1),
+    //               y: dS.sizeOne
+    //           }, {
+    //               x: new Date(d2),
+    //               y: dS.sizeTwo
+    //           }]
+    //       }]
+    //   },
+    //   options: {
+    //     scales: {
+    //       xAxes: [{
+    //       }]
+    //     }
+    //   }
+    // });
 
   });
 
@@ -224,11 +282,12 @@ $(document).on("click", "#survival", function() {
 
       function drawChart_sur() {
         var dD = diffDays();
+        var dS = diffSize();
 
         var data2 = google.visualization.arrayToDataTable([
-          ['Time', 'Percentage', 'Stage T1b', 'Stage T1c', 'Stage T2a', 'Stage T2b', 'Stage T3'],
-          [dD.dayOne,        84,    83,          77,              68,         60,           56],
-          [dD.dayTwo,        81,    83,          77,              68,         60,           56]
+          ['Time',            'Percentage',        'Stage T1b', 'Stage T1c', 'Stage T2a', 'Stage T2b', 'Stage T3'],
+          [dD.dayOne,   survivalChance(dS.sizeOne)*100,    83,          77,              68,         60,           56],
+          [dD.dayTwo,   survivalChance(dS.sizeTwo)*100,    83,          77,              68,         60,           56]
         ]);
 
         var options2 = {
@@ -242,7 +301,7 @@ $(document).on("click", "#survival", function() {
             viewWindowMode:'explicit',
             viewWindow: {
                 max: 100,
-                min: 78 - 15
+                min: survivalChance(dS.sizeTwo)*100 - 15
             }
           },
           hAxis: {
